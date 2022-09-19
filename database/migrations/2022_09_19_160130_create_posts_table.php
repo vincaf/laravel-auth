@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->text('post_content');
             $table->text('post_image')->nullable();
             $table->dateTime('post_date');
+            $table->string('slug', 255);
             $table->timestamps();
         });
     }

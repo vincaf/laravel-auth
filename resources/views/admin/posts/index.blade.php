@@ -10,6 +10,7 @@
                             <th scope="col">ID</th>
                             <th scope="col">Author</th>
                             <th scope="col">Title</th>
+                            <th scope="col">Date</th>
                             <th scope="col"></th>
                         </tr>
                     </thead>
@@ -26,6 +27,9 @@
                                     <a href="{{ route('admin.posts.show', $post->slug) }}">
                                         {{ $post->title }}
                                     </a>
+                                </td>
+                                <td>
+                                    {{ $post->post_date }}
                                 </td>
                                 <td>
                                     <a href="" class="btn btn-sm btn-success">

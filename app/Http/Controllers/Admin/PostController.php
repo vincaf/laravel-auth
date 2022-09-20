@@ -40,18 +40,13 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $sentData = $request->all();
-
         $post = new Post();
-        $post->title = $sentData['title'];
-        $post->author = $sentData['author'];
-        $post->post_content = $sentData['post_content'];
-        $post->post_image = $sentData['post_image'];
-        $post->post_date = $sentData['post_date'];
-        $post->slug= Str::slug($post->title, '-');
+        $lastPostId = Post::orderBy('id', 'desc')->first();
+        $sentData['slug'] = Str::slug($sentData['title'], '-'). '-' . ($lastPostId->id + 1);
 
-        $post->save();
+        $post->create($sentData);
 
-        return redirect()->route('admin.posts.index', $post->slug)->with('created', $sentData['title']);
+        return redirect()->route('admin.posts.show', $sentData['slug'])->with('created', $sentData['title']);
     }
 
     /**

@@ -60,7 +60,7 @@ class PostController extends Controller
     public function edit($slug)
     {
         $post = Post::where('slug', $slug)->firstOrFail();
-        return view('posts.edit', compact('post'));
+        return view('admin.posts.edit', compact('post'));
     }
 
     /**

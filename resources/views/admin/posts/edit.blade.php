@@ -4,10 +4,10 @@
     <div class="container-lg">
         <div class="row justify-content-center">
             <div class="col-10">
-                <form action="{{ route('posts.update', $post->slug) }}" method="POST">
+                <form action="{{ route('admin.posts.update', $post->slug) }}" method="POST">
                     @csrf
                     @method('PUT')
-                    @include('posts.includes.form')
+                    @include('admin.posts.includes.form')
                 </form>
             </div>
         </div>

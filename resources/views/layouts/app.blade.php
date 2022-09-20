@@ -36,11 +36,14 @@
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
+                    <ul class="navbar-nav d-flex align-items-center">
                         @guest
                         @else
                             <li>
                                 <a href="{{ route('admin.posts.index') }}">Posts</a>
+                            </li>
+                            <li>
+                                <a class="btn btn-sm btn-outline-success mx-3 {{ request()->routeIs('admin.posts.create') ? 'active' : "" }}" href="{{ route('admin.posts.create') }}">Add new post</a>
                             </li>
                         @endguest
                     </ul>

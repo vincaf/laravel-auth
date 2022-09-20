@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -67,12 +68,21 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $slug)
     {
-        //
+        $sentData = $request->all();
+
+        // $validatedData = $request->validate($this->validationRules, $this->customValidationMessages);
+
+        $post = Post::where('slug', $slug)->firstOrFail();
+        $sentData['slug'] = Str::slug($sentData['title'], '-');
+        $post->slug;
+
+        $post->update($sentData);
+        
+        return redirect()->route('admin.posts.show', $post->slug)->with('edited', $sentData['title']);
     }
 
     /**

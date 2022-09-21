@@ -6,8 +6,7 @@
             <div class="card my-3" style="max-width: 850px;">
                 <div class="row g-0">
                     <div class="col-md-4">
-                        <img src="{{ $post->post_image }}" alt="{{ $post->post_title }}"
-                            class="img-fluid rounded-start" />
+                        <img src="{{ $post->post_image }}" alt="{{ $post->post_title }}" class="img-fluid rounded-start" />
                     </div>
                     <div class="col-md-8">
                         <div class="card-body">
@@ -15,6 +14,14 @@
                             <p><strong>Author:</strong> {{ $post->author }}</p>
                             <p>{{ $post->post_content }}</p>
                             <p><strong>Post Date:</strong> {{ $post->post_date }}</p>
+                            <div class="mt-5">
+                                <a href="{{ route('admin.posts.edit', $post->slug) }}" class="btn btn-sm btn-success">
+                                    Edit post
+                                </a>
+                                <a href="" class="btn btn-sm btn-danger">
+                                    Delete post
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>

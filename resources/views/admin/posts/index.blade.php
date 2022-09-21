@@ -6,7 +6,7 @@
             <div class="col-12">
                 @if (session('delete'))
                     <div class="alert alert-warning">
-                        "{{ session('delete') }}" è stato rimosso con successo.
+                        "{{ session('delete') }}" was successfully removed.
                     </div>
                 @endif
                 <table class="table table-striped">

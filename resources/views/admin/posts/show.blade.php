@@ -4,12 +4,12 @@
     <div class="container">
         @if (session('created'))
             <div class="alert alert-success">
-                "{{ session('created') }}" è stato creato con successo.
+                "{{ session('created') }}" was successfully created.
             </div>
         @endif
         @if (session('edited'))
             <div class="alert alert-success">
-                "{{ session('edited') }}" è stato modificato con successo.
+                "{{ session('edited') }}" was successfully edited.
             </div>
         @endif
         <div class="row justify-content-center">

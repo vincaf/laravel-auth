@@ -11,6 +11,12 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
+    private $validationRules = [
+        'title' => 'min:3|max:255|required|unique:posts,title|alpha',
+        'post_content' => 'min:3|required',
+        'post_image' => 'active_url',
+    ];
+
     /**
      * Display a listing of the resource.
      *
@@ -41,6 +47,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate($this->validationRules);
         $sentData = $request->all();
         $sentData['author'] = Auth::user()->name;
         $sentData['post_date'] = new DateTime();

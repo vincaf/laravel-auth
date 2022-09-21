@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 class PostController extends Controller
 {
     private $validationRules = [
-        'title' => 'min:3|max:255|required|unique:posts,title',
+        'title' => 'min:3|max:255|required',
         'post_content' => 'min:3|required',
         'post_image' => 'active_url',
     ];

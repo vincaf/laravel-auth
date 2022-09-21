@@ -50,6 +50,7 @@ class PostController extends Controller
         $request->validate($this->validationRules);
         $sentData = $request->all();
         $sentData['author'] = Auth::user()->name;
+        date_default_timezone_set('Europe/Rome');
         $sentData['post_date'] = new DateTime();
         $post = new Post();
         $lastPostId = Post::orderBy('id', 'desc')->first();

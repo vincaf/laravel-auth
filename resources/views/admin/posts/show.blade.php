@@ -24,7 +24,7 @@
                             <p><strong>Author:</strong> {{ $post->author }}</p>
                             <p>{{ $post->post_content }}</p>
                             <p><strong>Post Date:</strong> {{ $post->post_date }}</p>
-                            <div class="mt-5">
+                            <div class="mt-5 d-flex">
                                 <a href="{{ route('admin.posts.edit', $post->slug) }}" class="btn btn-sm btn-success">
                                     Edit post
                                 </a>
@@ -33,7 +33,7 @@
                                     @csrf
                                     @method('DELETE')
 
-                                    <button type="submit" class="btn btn-sm btn-danger my-2">
+                                    <button type="submit" class="btn btn-sm btn-danger mx-2">
                                         Delete
                                     </button>
                                 </form>

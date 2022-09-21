@@ -18,9 +18,15 @@
                                 <a href="{{ route('admin.posts.edit', $post->slug) }}" class="btn btn-sm btn-success">
                                     Edit post
                                 </a>
-                                <a href="" class="btn btn-sm btn-danger">
-                                    Delete post
-                                </a>
+                                <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST"
+                                    class="form-post-delete" data-post-name="{{ $post->title }}">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit" class="btn btn-sm btn-danger my-2">
+                                        Delete
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
@@ -28,4 +34,20 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('footer-scripts')
+    <script>
+        const deleteFormElements = document.querySelectorAll('.form-post-delete');
+        deleteFormElements.forEach(
+            formElement => {
+                formElement.addEventListener('submit', function(event){
+                    const name = this.getAttribute('data-post-name');
+                    event.preventDefault();
+                    const result = window.confirm(`Are you sure you want to delete "${name}"?`);
+                    if(result) this.submit();
+                })
+            }
+        )
+    </script>
 @endsection

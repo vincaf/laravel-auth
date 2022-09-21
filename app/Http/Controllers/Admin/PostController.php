@@ -85,7 +85,7 @@ class PostController extends Controller
         // $validatedData = $request->validate($this->validationRules, $this->customValidationMessages);
 
         $post = Post::where('slug', $slug)->firstOrFail();
-        $sentData['slug'] = Str::slug($sentData['title'], '-');
+        $sentData['slug'] = Str::slug($sentData['title'], '-'). '-' . ($post->id);
         $post->slug;
 
         $post->update($sentData);
@@ -101,6 +101,9 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $post = Post::findOrFail($id);
+        $post->delete();
+
+        return redirect()->route('admin.posts.index')->with('delete', $post->title);
     }
 }

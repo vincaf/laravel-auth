@@ -2,6 +2,16 @@
 
 @section('content')
     <div class="container">
+        @if (session('created'))
+            <div class="alert alert-success">
+                "{{ session('created') }}" è stato creato con successo.
+            </div>
+        @endif
+        @if (session('edited'))
+            <div class="alert alert-success">
+                "{{ session('edited') }}" è stato modificato con successo.
+            </div>
+        @endif
         <div class="row justify-content-center">
             <div class="card my-3" style="max-width: 850px;">
                 <div class="row g-0">
@@ -41,11 +51,11 @@
         const deleteFormElements = document.querySelectorAll('.form-post-delete');
         deleteFormElements.forEach(
             formElement => {
-                formElement.addEventListener('submit', function(event){
+                formElement.addEventListener('submit', function(event) {
                     const name = this.getAttribute('data-post-name');
                     event.preventDefault();
                     const result = window.confirm(`Are you sure you want to delete "${name}"?`);
-                    if(result) this.submit();
+                    if (result) this.submit();
                 })
             }
         )

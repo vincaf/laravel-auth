@@ -12,7 +12,7 @@ use Illuminate\Support\Str;
 class PostController extends Controller
 {
     private $validationRules = [
-        'title' => 'min:3|max:255|required|unique:posts,title|alpha',
+        'title' => 'min:3|max:255|required|unique:posts,title',
         'post_content' => 'min:3|required',
         'post_image' => 'active_url',
     ];
@@ -91,17 +91,12 @@ class PostController extends Controller
      */
     public function update(Request $request, $slug)
     {
-        $sentData = $request->all();
-
-        // $validatedData = $request->validate($this->validationRules, $this->customValidationMessages);
-
+        $sentData = $request->validate($this->validationRules);
         $post = Post::where('slug', $slug)->firstOrFail();
         $sentData['slug'] = Str::slug($sentData['title'], '-'). '-' . ($post->id);
-        $post->slug;
-
         $post->update($sentData);
-        
-        return redirect()->route('admin.posts.show', $post->slug)->with('edited', $sentData['title']);
+
+        return redirect()->route('admin.posts.show', $post->slug)->with('edited', $sentData['title']); 
     }
 
     /**

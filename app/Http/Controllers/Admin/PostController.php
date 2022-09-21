@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Post;
+use DateTime;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 
 class PostController extends Controller
@@ -40,6 +42,8 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $sentData = $request->all();
+        $sentData['author'] = Auth::user()->name;
+        $sentData['post_date'] = new DateTime();
         $post = new Post();
         $lastPostId = Post::orderBy('id', 'desc')->first();
         $sentData['slug'] = Str::slug($sentData['title'], '-'). '-' . ($lastPostId->id + 1);

@@ -9,16 +9,6 @@
     @enderror
 </div>
 <div class="mb-3">
-    <label for="input-author" class="form-label">Author</label>
-    <input type="text" class="form-control" id="input-author" name="author" value="{{ old('author', $post->author) }}"
-        required>
-    @error('author')
-        <div class="alert alert-danger">
-            {{ $message }}
-        </div>
-    @enderror
-</div>
-<div class="mb-3">
     <label for="input-post_content" class="form-label">Content</label>
     <textarea class="form-control" id="input-post_content" cols="30" rows='5' name="post_content" required>{{ old('post_content', $post->post_content) }}</textarea>
     @error('post_content')
@@ -37,17 +27,6 @@
         </div>
     @enderror
 </div>
-<div class="mb-3">
-    <label for="input-post_date" class="form-label">Date</label>
-    <input type="date" class="form-control" id="input-post_date" name="post_date"
-        value="{{ old('post_date', $post->post_date) }}" required>
-    @error('post_date')
-        <div class="alert alert-danger">
-            {{ $message }}
-        </div>
-    @enderror
-</div>
-
 <div class="text-center mt-5">
     <button type="submit" class="btn btn-primary btn-lg">UPDATE AND SAVE</button>
 </div>
